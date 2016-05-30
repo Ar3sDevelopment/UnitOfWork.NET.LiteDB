@@ -50,3 +50,5 @@ obj/
 *.boltdata/
 packages/
 *.userprefs
+.vs/
+*.suo
