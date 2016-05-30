@@ -49,3 +49,4 @@ bin/
 obj/
 *.boltdata/
 packages/
+*.userprefs
