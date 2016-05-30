@@ -10,7 +10,8 @@ namespace UnitOfWork.NET.LiteDB.Interfaces
     public interface ILiteRepository<TEntity> : IRepository<TEntity> where TEntity : class, new()
     {
         new ILiteUnitOfWork UnitOfWork { get; }
-        //DbSet<TEntity> Set { get; }
+
+        LiteCollection<TEntity> Collection { get; }
 
         TEntity Entity(BsonValue id);
 
@@ -28,8 +29,6 @@ namespace UnitOfWork.NET.LiteDB.Interfaces
         void Update(TEntity entity, BsonValue id);
 
         void Delete(BsonValue id);
-
-        //void OnSaveChanges(IDictionary<EntityState, IEnumerable<TEntity>> entities);
     }
 
     public interface ILiteRepository<TEntity, TDTO> : IRepository<TEntity, TDTO>, ILiteRepository<TEntity> where TEntity : class, new() where TDTO : class, new()
@@ -44,7 +43,7 @@ namespace UnitOfWork.NET.LiteDB.Interfaces
 
         DataSourceResult<TDTO> DataSource(int take, int skip, ICollection<Sort> sort, Filter filter, Expression<Func<TEntity, bool>> where);
 
-        TDTO Insert(TDTO dto);
+        BsonValue Insert(TDTO dto);
 
         void Update(TDTO dto, BsonValue id);
         void Update(TDTO dto);

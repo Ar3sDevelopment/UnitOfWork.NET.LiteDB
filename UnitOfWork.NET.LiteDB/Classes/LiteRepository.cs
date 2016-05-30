@@ -24,7 +24,7 @@ namespace UnitOfWork.NET.LiteDB.Classes
         {
         }
 
-        public LiteCollection<TEntity> Collection => Data as LiteCollection<TEntity>;
+        public LiteCollection<TEntity> Collection => UnitOfWork.Collection<TEntity>();
 
         public IEnumerable<TEntity> All(Expression<Func<TEntity, bool>> expr) => Collection.Find(expr);
 
@@ -42,10 +42,6 @@ namespace UnitOfWork.NET.LiteDB.Classes
         public virtual void Update(TEntity entity, BsonValue id) => Collection.Update(id, entity);
 
         public virtual void Delete(BsonValue id) => Collection.Delete(id);
-
-        //public virtual void OnSaveChanges(IDictionary<EntityState, IEnumerable<TEntity>> entities)
-        //{
-        //}
 
         public async Task<BsonValue> InsertAsync(TEntity entity) => await new TaskFactory().StartNew(() => Insert(entity));
         public async Task UpdateAsync(TEntity entity) => await new TaskFactory().StartNew(() => Update(entity));
@@ -111,7 +107,7 @@ namespace UnitOfWork.NET.LiteDB.Classes
             };
         }
 
-        public TDTO Insert(TDTO dto) => Builder.Build(Insert(Builder.Build(dto).To<TEntity>())).To<TDTO>();
+        public BsonValue Insert(TDTO dto) => Insert(Builder.Build(dto).To<TEntity>());
 
         public void Update(TDTO dto, BsonValue id)
         {
@@ -125,7 +121,7 @@ namespace UnitOfWork.NET.LiteDB.Classes
             Update(Builder.Build(dto).To<TEntity>());
         }
 
-        public async Task<TDTO> InsertAsync(TDTO dto) => await new TaskFactory().StartNew(() => Insert(dto));
+        public async Task<BsonValue> InsertAsync(TDTO dto) => await new TaskFactory().StartNew(() => Insert(dto));
         public async Task UpdateAsync(TDTO dto) => await new TaskFactory().StartNew(() => Update(dto));
         public async Task UpdateAsync(TDTO dto, BsonValue id) => await new TaskFactory().StartNew(() => Update(dto, id));
         public async Task<IEnumerable<TDTO>> ListAsync(Expression<Func<TEntity, bool>> expr) => await new TaskFactory().StartNew(() => List(expr));

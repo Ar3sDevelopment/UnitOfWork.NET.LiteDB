@@ -8,17 +8,7 @@ namespace UnitOfWork.NET.LiteDB.Interfaces
 {
     public interface ILiteUnitOfWork : IUnitOfWork
     {
-        void BeforeSaveChanges(LiteDatabase context);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        void SaveChanges();
-
-        /// <summary>
-        /// 
-        /// </summary>
-        void AfterSaveChanges(LiteDatabase context);
+        LiteCollection<TEntity> Collection<TEntity>() where TEntity : class, new();
 
         /// <summary>
         /// 
