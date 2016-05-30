@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>UnitOfWork.NET.LiteDB</title>
+    <authors>$author$</authors>
+    <owners>Matteo Bruni</owners>
+    <description>$description$</description>
+    <releaseNotes></releaseNotes>
+    <summary>$description$</summary>
+    <language>en-US</language>
+    <tags>EntityFramework UnitOfWork unit of work Repository Business Pattern Repositories Database DbContext Context DbSet Framework Autofac Container IoC BIZ Entity Entities Connection LiteDB</tags>
+    <projectUrl>http://ar3sdevelopment.github.io/UnitOfWork.NET.LiteDB</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <dependencies>
+      <group targetFramework=".NETFramework4.5">
+        <dependency id="UnitOfWork.NET" version="4.1.0.461" />
+        <dependency id="LiteDB" version="1.0.4" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>
